@@ -1,19 +1,15 @@
 package com.rahulchauhan.devfolio.project;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import jakarta.persistence.Version;
+import com.rahulchauhan.devfolio.skill.Skill;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.Instant;
 import java.time.LocalDate;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "project")
@@ -69,14 +65,26 @@ public class Project {
     @Version
     private Long version;
 
+    @ManyToMany
+    @JoinTable(name = "project_skill", joinColumns = @JoinColumn(name = "project_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
+    private Set<Skill> skills = new HashSet<>();
+
     protected Project() {
     }
 
-    public Project(String slug, String title, String summary, ProjectStatus status, LocalDate startedOn) {
+    public Project(String slug, String title, String summary, ProjectStatus status) {
         this.slug = slug;
         this.title = title;
         this.summary = summary;
         this.status = status;
+    }
+
+    public void addSkill(Skill skill) {
+        skills.add(skill);
+    }
+
+    public Set<Skill> getSkills() {
+        return Collections.unmodifiableSet(skills);
     }
 
     public String getSlug() {
