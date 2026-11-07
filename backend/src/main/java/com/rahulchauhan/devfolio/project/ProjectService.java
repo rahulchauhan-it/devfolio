@@ -17,11 +17,18 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class ProjectService {
     private final ProjectRepository projectRepository;
-    private static final Comparator<Skill> SKILL_ORDER = Comparator.comparing(Skill::getProficiency, Comparator.reverseOrder()).thenComparing(Skill::getName);
 
     public ProjectService(ProjectRepository projectRepository) {
         this.projectRepository = projectRepository;
     }
+
+    private static final Comparator<Skill> SKILL_ORDER = Comparator.comparing(
+                    Skill::getProficiency,
+                    Comparator.reverseOrder()
+            )
+            .thenComparing(Skill::getName,
+                    String.CASE_INSENSITIVE_ORDER);
+
 
     public PageResponse<ProjectSummaryResponse> list(int page, int size) {
         int safePage = Math.max(page, 0);
