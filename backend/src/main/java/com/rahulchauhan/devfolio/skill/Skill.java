@@ -27,6 +27,9 @@ public class Skill {
     @Column(name = "proficiency", nullable = false)
     private Short proficiency = 3;
 
+    @Column(name = "display_order", nullable = false)
+    private Integer displayOrder = 0;
+
     @Column(name = "icon")
     private String icon;
 
@@ -64,6 +67,14 @@ public class Skill {
 
     public void setProficiency(Short proficiency) {
         this.proficiency = proficiency;
+    }
+
+    public Integer getDisplayOrder() {
+        return displayOrder;
+    }
+
+    public void setDisplayOrder(Integer displayOrder) {
+        this.displayOrder = displayOrder;
     }
 
     public String getIcon() {
