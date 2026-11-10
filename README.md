@@ -27,9 +27,9 @@ the site itself demonstrates Java/Spring Boot, database design, security, testin
 - [x] Consistent error responses (RFC 9457 `ProblemDetail`)
 - [x] Automated tests: unit, web layer and integration tests on real PostgreSQL (Testcontainers)
 - [x] Multi-stage Docker image and Docker Compose setup
+- [x] CI with GitHub Actions
 
 **Planned**
-- [ ] CI with GitHub Actions
 - [ ] Public deployment
 - [ ] React frontend: Home, Projects, Project detail, Skills, About, Contact, with dark/light mode
 - [ ] OpenAPI/Swagger documentation
@@ -108,7 +108,7 @@ devfolio/
 | 1 | Setup, wireframes, database schema | Done |
 | 2 | Backend core: Flyway, entities, public Projects API, tests | Done |
 | 3 | Docker and Docker Compose | Done |
-| 4 | CI with GitHub Actions | In progress |
+| 4 | CI with GitHub Actions | Done |
 | 5 | Deploy backend and database (public URL) | Next |
 | 6 | React frontend | Planned |
 | 7 | Security (JWT), admin CMS, contact form | Planned |
