@@ -61,4 +61,33 @@ class SkillRepositoryTests {
         DataIntegrityViolationException ex = assertThrows(DataIntegrityViolationException.class, () -> skillRepository.saveAndFlush(skill));
         assertThat(ex.getMessage()).containsIgnoringCase("ck_skill_proficiency");
     }
+
+    @Test
+    void persistsDisplayOrderDefault() {
+
+        Skill java = new Skill("Java", SkillCategory.LANGUAGE);
+        Skill saved = skillRepository.saveAndFlush(java);
+
+        entityManager.clear();
+
+        Skill reloaded = skillRepository.findById(saved.getId()).orElseThrow();
+
+        assertThat(reloaded.getDisplayOrder()).isZero();
+    }
+
+    @Test
+    void persistsCustomDisplayOrder() {
+
+        Skill java = new Skill("Java", SkillCategory.LANGUAGE);
+        java.setDisplayOrder(5);
+
+        Skill saved = skillRepository.saveAndFlush(java);
+
+        entityManager.clear();
+
+        Skill reloaded = skillRepository.findById(saved.getId()).orElseThrow();
+
+        assertThat(reloaded.getDisplayOrder()).isEqualTo(5);
+    }
+
 }
