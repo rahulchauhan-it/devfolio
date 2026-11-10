@@ -1,9 +1,9 @@
 # Wireframes
 
-Low-fidelity layouts for three pages. Recreate these in Figma or Excalidraw later; the structure and reasoning matter more than the boxes.
+Low-fidelity layouts for the three main pages. They are design intent for the frontend, not final designs: the structure and reasoning matter more than the boxes. Sections that depend on features that are not built yet (GitHub block, status footer, filters) are listed as planned in the [roadmap](../README.md#roadmap).
 
 **Design principles**
-- A recruiter should understand who you are and see proof within 10 seconds.
+- A recruiter should understand who I am and see proof within 10 seconds.
 - Projects are the hero. Everything else supports them.
 - Mobile-first: design the phone layout, then widen it.
 - Every page has one clear primary action.
@@ -14,10 +14,10 @@ Low-fidelity layouts for three pages. Recreate these in Figma or Excalidraw late
 
 ```
 +--------------------------------------------------------------------------+
-| [Logo: YourName]        Projects   Skills   About   Contact   [Sun/Moon] |
+| [Logo: Rahul Chauhan]   Projects   Skills   About   Contact   [Sun/Moon] |
 +--------------------------------------------------------------------------+
 |                                                                          |
-|   Hi, I'm <Your Name>.                                +------------+     |
+|   Hi, I'm Rahul Chauhan.                              +------------+     |
 |   Full Stack Java Developer                           |            |     |
 |   I build secure, tested REST APIs with Spring Boot   |   Photo /  |     |
 |   and React front ends.                               |   avatar   |     |
@@ -43,11 +43,13 @@ Low-fidelity layouts for three pages. Recreate these in Figma or Excalidraw late
 +--------------------------------------------------------------------------+
 |  GET IN TOUCH:  short message + [ Contact me ]                           |
 +--------------------------------------------------------------------------+
-| (c) 2026 YourName   |  Status: all systems up  |  Source on GitHub       |
+| (c) 2026 Rahul Chauhan   |  Status: all systems up  |  Source on GitHub  |
 +--------------------------------------------------------------------------+
 ```
 
 **Why:** the hero gives identity, role and two actions. Featured projects come before skills because proof beats claims. The GitHub block and the footer status link are the differentiators (live API data, observability).
+
+**Data sources:** featured projects come from `GET /api/v1/projects` (the `featured` flag and `displayOrder` decide the order). The GitHub block and the status link depend on planned endpoints.
 
 **Mobile:** single column; nav collapses to a hamburger; hero text first, photo below; project cards stacked.
 
@@ -85,7 +87,9 @@ Low-fidelity layouts for three pages. Recreate these in Figma or Excalidraw late
 
 **States to design:** loading (skeleton cards), empty ("No projects match this filter" plus a reset button), error (message plus retry).
 
-**Backend link:** `GET /api/v1/projects?skill=java&page=0&size=6&sort=displayOrder`. Skill chips come from `GET /api/v1/skills`.
+**Backend:**
+- Available today: `GET /api/v1/projects?page=0&size=6`. The response has `items`, `page` (zero-based), `size`, `totalElements` and `totalPages`; each item has `slug`, `title`, `summary`, `coverImageUrl`, `featured`, `startedOn` and the skill names.
+- Planned: filtering by skill (`?skill=java`), choosing the sort order, search, and `GET /api/v1/skills` for the skill chips.
 
 **Mobile:** cards stack in one column; filters become a horizontally scrollable chip row.
 
@@ -101,7 +105,7 @@ Low-fidelity layouts for three pages. Recreate these in Figma or Excalidraw late
 |                                                                          |
 |  DevFolio                                                                |
 |  Full-stack portfolio platform with CMS, CI/CD and monitoring            |
-|  [Live demo]  [Source on GitHub]       Status: PUBLISHED | Started Aug 26 |
+|  [Live demo]  [Source on GitHub]                          Started Aug 26 |
 |                                                                          |
 |  +--------------------------------------------------------------------+  |
 |  |                   hero screenshot / cover image                    |  |
@@ -122,15 +126,8 @@ Low-fidelity layouts for three pages. Recreate these in Figma or Excalidraw late
 +--------------------------------------------------------------------------+
 ```
 
-**Why:** interviewers read the case study to judge how you think. The sidebar gives quick facts. Repo stats come from the cached GitHub endpoint.
+**Why:** interviewers read the case study to judge how I think. The sidebar gives quick facts. Repo stats come from the planned, cached GitHub endpoint.
 
-**Backend link:** `GET /api/v1/projects/{slug}` returns the project DTO with skills and `caseStudyMd`.
+**Backend:** `GET /api/v1/projects/{slug}` returns the published project with `caseStudy` (Markdown), `repoUrl`, `liveUrl` and its skills (name, category, proficiency, icon), sorted by proficiency and then by name. A draft or unknown slug returns a 404 Problem Details response.
 
 **Mobile:** the sidebar blocks move below the title and above the case study; Mermaid diagrams scroll horizontally.
-
----
-
-## What to do next with these
-
-1. Redraw each page on paper or in Figma, and note one change you would make and why.
-2. Check each page against the schema: every piece of data shown above should map to a column in [db-schema.md](db-schema.md) or an API in [architecture.md](architecture.md).
