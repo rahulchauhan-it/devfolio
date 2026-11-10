@@ -1,5 +1,7 @@
 # DevFolio
 
+   [![CI](https://github.com/rahulchauhan-it/devfolio/actions/workflows/ci.yml/badge.svg)](https://github.com/rahulchauhan-it/devfolio/actions/workflows/ci.yml)
+
 > A containerized portfolio platform for a Full Stack Java Developer, currently under construction: REST API, admin CMS, live GitHub integration, observability, and CI/CD.
 
 **Live demo:** _comming soon_
