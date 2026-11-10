@@ -52,10 +52,25 @@ See [docs/architecture.md](docs/architecture.md). Decisions are recorded in [doc
 
 ## Run locally
 
+**With Docker (recommended)**
+
 ```bash
-git clone https://github.com/rahul-chauhan-dev/devfolio.git && cd devfolio
-cp .env.example .env
-docker compose up -d        # starts PostgreSQL (backend and frontend join in Week 2-3)
+git clone https://github.com/<your-github-username>/devfolio.git
+cd devfolio
+cp .env.example .env        # Windows (cmd): copy .env.example .env
+docker compose up --build
+```
+
+- Health check: http://localhost:8080/actuator/health
+- Projects API: http://localhost:8080/api/v1/projects
+
+PostgreSQL is also available on `localhost:5433` for tools like psql or IntelliJ.
+
+**Run the tests** (Docker must be running, because the tests start PostgreSQL with Testcontainers)
+
+```bash
+cd backend
+./mvnw test
 ```
 
 ## Roadmap
