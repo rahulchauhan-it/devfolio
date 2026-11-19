@@ -4,7 +4,18 @@
 
 > A containerized portfolio platform for a Full Stack Java Developer, currently under construction: REST API, admin CMS, live GitHub integration, observability, and CI/CD.
 
-**Live demo:** _comming soon_
+**Live demo:** 
+| | Link |
+|---|---|
+| **API base URL** | https://devfolio-api-4zgu.onrender.com |
+| **Health check** | https://devfolio-api-4zgu.onrender.com/actuator/health |
+| **Projects list** | https://devfolio-api-4zgu.onrender.com/api/v1/projects |
+| **Project detail** | https://devfolio-api-4zgu.onrender.com/api/v1/projects/devfolio |
+| **Frontend** | Coming soon |
+
+> **Note:** the API runs on Render's free tier, which sleeps after 15 minutes
+> without traffic. The first request after that can take up to ~2 minute
+> (measured: ~2 min 12 s) while the service wakes up. Later requests are fast.
 
 ## About me
 
@@ -28,9 +39,9 @@ the site itself demonstrates Java/Spring Boot, database design, security, testin
 - [x] Automated tests: unit, web layer and integration tests on real PostgreSQL (Testcontainers)
 - [x] Multi-stage Docker image and Docker Compose setup
 - [x] CI with GitHub Actions
+- [x] Public deployment
 
 **Planned**
-- [ ] Public deployment
 - [ ] React frontend: Home, Projects, Project detail, Skills, About, Contact, with dark/light mode
 - [ ] OpenAPI/Swagger documentation
 - [ ] Admin CMS (Spring Security + JWT) to manage projects and Markdown case studies
@@ -109,7 +120,7 @@ devfolio/
 | 2 | Backend core: Flyway, entities, public Projects API, tests | Done |
 | 3 | Docker and Docker Compose | Done |
 | 4 | CI with GitHub Actions | Done |
-| 5 | Deploy backend and database (public URL) | Next |
+| 5 | Deploy backend and database (public URL) | Done |
 | 6 | React frontend | Planned |
 | 7 | Security (JWT), admin CMS, contact form | Planned |
 | 8 | GitHub integration, status page, case studies | Planned |
