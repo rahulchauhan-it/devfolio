@@ -95,6 +95,20 @@ cd backend
 ./mvnw test
 ```
 
+## Configuration
+
+The backend reads its settings from environment variables (see `.env.example`).
+
+| Variable | Description | Default |
+|---|---|---|
+| `DB_URL` | JDBC URL of the PostgreSQL database | none (required) |
+| `DB_USERNAME` | Database user | none (required) |
+| `DB_PASSWORD` | Database password | none (required) |
+| `CORS_ALLOWED_ORIGIN` | Frontend origin allowed to call the API (CORS). Exact origin, no trailing slash. | `http://localhost:5173` |
+
+With Docker Compose, the database variables are provided by `docker-compose.yml` and your `.env`.
+In production, set `CORS_ALLOWED_ORIGIN` to the deployed frontend's URL.
+
 ## Repository structure
 
 ```
